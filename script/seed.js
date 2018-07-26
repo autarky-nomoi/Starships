@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {Ship, User} = require('../server/db/models')
+const {Ship} = require('../server/db/models')
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -74,19 +74,24 @@ const ships = [{
 //whats god
 
 async function seed() {
-  await db.sync({force: true})
-  //await Promise.all(ships.map(ship => Ship.create(ship)));
-  await Promise.all([
-    User.create({firstName: 'Cody', lastName: 'Pug', email: 'cody@email.com', password: '123'}),
-    User.create({firstName: 'Han', lastName: 'Solo', email: 'Hsolo@email.com', password: '123'}),
-    ships.map(ship => Ship.create(ship))
-  ])
-  console.log('db synced!')
-  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-  // executed until that promise resolves!
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(`seeded successfully`)
+  try {
+    await db.sync({force: true})
+    await Promise.all(ships.map(ship => Ship.create(ship)));
+    // await Promise.all([
+      // User.create({firstName: 'Cody', lastName: 'Pug', email: 'cody@email.com', password: '123'}),
+      // User.create({firstName: 'Han', lastName: 'Solo', email: 'Hsolo@email.com', password: '123'}),
+      // ])
+      ships.map(ship => await Ship.create(ship))
+    console.log('db synced!')
+    // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
+    // executed until that promise resolves!
+    // Wowzers! We can even `await` on the right-hand side of the assignment operator
+    // and store the result that the promise resolves to in a variable! This is nice!
+  //   console.log(`seeded successfully`)
+  } catch (error) {
+    console.log(error)
+  }
+
 }
 
 // We've separated the `seed` function from the `runSeed` function.

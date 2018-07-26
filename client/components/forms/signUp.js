@@ -11,7 +11,7 @@ class SignUp extends Component {
       password : ''
     }
     this.onChangeHandler = this.onChangeHandler.bind(this)
-    this.onSubmitHandler = this.onSubmitHandler.btind(this)
+    this.onSubmitHandler = this.onSubmitHandler.bind(this)
   }
 
   onSubmitHandler(evt){

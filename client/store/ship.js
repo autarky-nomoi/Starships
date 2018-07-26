@@ -20,7 +20,7 @@ export const fetchShips = () => {
 export const fetchSingleShip = ShipId => {
   return async dispatch => {
     const res = await axios.get(`/api/Ship/${ShipId}`);
-    return dispatch(getSingleShip(res.data));
+    dispatch(getSingleShip(res.data));
   }
 }
 
