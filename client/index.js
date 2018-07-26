@@ -11,10 +11,9 @@ import './socket'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    {/* <Router history={history}> */}
       <App />
-
-    </Router>
+    {/* </Router> */}
   </Provider>,
   document.getElementById('app')
 )

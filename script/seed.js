@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {Ship} = require('../server/db/models')
+const {Ship,User} = require('../server/db/models')
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -76,12 +76,12 @@ const ships = [{
 async function seed() {
   try {
     await db.sync({force: true})
-    await Promise.all(ships.map(ship => Ship.create(ship)));
-    // await Promise.all([
-      // User.create({firstName: 'Cody', lastName: 'Pug', email: 'cody@email.com', password: '123'}),
-      // User.create({firstName: 'Han', lastName: 'Solo', email: 'Hsolo@email.com', password: '123'}),
-      // ])
-      ships.map(ship => await Ship.create(ship))
+    // await Promise.all(ships.map(ship => Ship.create(ship)));
+    await Promise.all([
+      User.create({firstName: 'Cody', lastName: 'Pug', email: 'cody@email.com', password: '123'}),
+      User.create({firstName: 'Han', lastName: 'Solo', email: 'Hsolo@email.com', password: '123'}),
+      ships.map(ship => Ship.create(ship))
+      ])
     console.log('db synced!')
     // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
     // executed until that promise resolves!
