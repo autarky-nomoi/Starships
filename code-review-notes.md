@@ -1,0 +1,9 @@
+- google oauth
+- account settings only when logged in
+- calculate cart total based on what's actually in the cart
+- might want to update 'cart' model to 'cartItem'
+- Guest checkout
+- Order history
+  - Also consider where the item price comes from for the order history
+- Think about 'RESTful' routing
+- Consider using req.user vs req.body.userID or req.params.userID
