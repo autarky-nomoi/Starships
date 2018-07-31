@@ -1,21 +1,21 @@
-// const router = require('express').Router();
-// const {Wishlist,Ship}  = require('../db/models');
+const router = require('express').Router();
+const {Wishlist,Ship}  = require('../db/models');
 
-// module.exports = router;
+module.exports = router;
 
-// //get all ships by user's wishlist
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     const result = await Wishlist.findAll({
-//       include : [{model : Ship}],
-//       userId : req.params.userId
-//     })
-//     res.json(result)
+//get all ships by user's wishlist
+router.get('/:id', async (req, res, next) => {
+  try {
+    const result = await Wishlist.findAll({
+      include : [{model : Ship}],
+      userId : req.params.userId
+    })
+    res.json(result)
 
-//   } catch (error) {
-//     console.log(error)
-//   }
-// });
+  } catch (error) {
+    console.log(error)
+  }
+});
 
 
 
