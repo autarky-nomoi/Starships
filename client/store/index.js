@@ -1,7 +1,6 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import { sessionService, sessionReducer } from 'redux-react-session';
 import {composeWithDevTools} from 'redux-devtools-extension'
 
 import user from './user';
@@ -13,7 +12,7 @@ import OrdersReducer from './orders';
 
 const reducer = combineReducers({
   
-  user, ship, review, cart, wishReducer, OrdersReducer, session: sessionReducer
+  user, ship, review, cart, wishReducer, 
 
 });
 const middleware = composeWithDevTools(
@@ -24,7 +23,6 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware)
 
 // Init the session service
-sessionService.initSessionService(store);
 
 export default store
 export * from './user'
