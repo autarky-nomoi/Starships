@@ -15,7 +15,6 @@ class ShipCard extends Component {
 
 
   addingToCart(shipId){
-    this.props.me()
     this.props.putInCart(shipId, this.props.user)
     alert('Added to Cart')
   }
@@ -26,6 +25,21 @@ class ShipCard extends Component {
     this.props.putInWishList(shipId, this.props.user)
     alert('Added to Wish List');
   }
+
+  // clickHandler() {
+  //   const ship = this.props.ship
+  //   if (this.props.user) {
+  //     this.addingToCart(this.props.shipId);
+  //   } else {
+  //     let qty =  JSON.parse(localStorage.getItem(ship.id))
+  //         if(qty) {
+  //           localStorage.setItem(ship.id, qty + 1);
+  //         } else {
+  //           localStorage.setItem(ship.id, 1);
+  //         }
+  //   }
+  
+  // }
 
   render() {
     console.log(this.props)
@@ -51,12 +65,7 @@ class ShipCard extends Component {
         <div className='ship-info'>
         <button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>
         <button onClick={()=>{
-          let qty =  JSON.parse(localStorage.getItem(ship.id))
-          if(qty) {
-            localStorage.setItem(ship.id, qty + 1);
-          } else {
-            localStorage.setItem(ship.id, 1);
-          }
+          
         }}  className="button button2">Add to cart</button>
 
         <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
