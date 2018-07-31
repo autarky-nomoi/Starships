@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import {removeShip,changingQuantity} from '../../store/cart/thunk'
+import {removeShip, changingQuantity} from '../../store/cart/thunk'
 
 require('./style/CartItems.css')
 

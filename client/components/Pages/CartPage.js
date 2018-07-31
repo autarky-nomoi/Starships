@@ -33,22 +33,23 @@ class CartPage extends Component {
     const Usercart = this.props.cart
 
     console.log(this.props.cart)
+    return(
 
       <div className = 'cart' >
         <div className='products'>
           <h1 className='color center'>Your Cart</h1>
-
+  
           <div className='list-item-cal'>
             <hr />
-
+  
             <div className='list-item'>
               <p className='color'>Item</p>
             </div>
-
+  
             <div className='list-price'>
               <p className='color'>Price</p>
             </div>
-
+  
             <div className='list-quantity '>
               <p className='color'>Quantity</p>
             </div>
@@ -69,6 +70,7 @@ class CartPage extends Component {
         </div>
         <CheckoutSummaryCard isCheckout={true} subtotal={subtotal} shipCount={shipCount} />
       </div >
+    )
   }
 }
 
