@@ -22,13 +22,13 @@ class CartItems extends Component {
       const userId = this.props.user.id 
       const shipId = this.props.ship.starship.id 
       
-      this.props.changingQuantity(shipId,userId,quantity)
+      this.props.changingQuantity(shipId, userId, quantity)
 
       this.setState({
         quantity : ''
       })
 
-    }else {
+    } else {
       alert(`Must input a number in quantity for: ${this.props.ship.starship.name}` )
     }
   }
@@ -81,8 +81,6 @@ class CartItems extends Component {
           </form>
           </div>
 
-        
-
           <hr />
       </div>
 
@@ -103,4 +101,4 @@ const MapDispatchToProps = dispatch => {
   }
 }
 
-export default  connect(MapStateToProps, MapDispatchToProps)(CartItems)
+export default connect(MapStateToProps, MapDispatchToProps)(CartItems)
