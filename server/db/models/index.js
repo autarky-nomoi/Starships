@@ -3,7 +3,6 @@ const Ship = require('./ship');
 const Review = require('./review');
 const Cart = require('./cart');
 const Wishlist = require('./wishlist');
-const Payment = require('./payment');
 const OrderLine = require('./orders');
 
 
@@ -41,12 +40,9 @@ User.belongsToMany(Ship, { through: Wishlist });
 User.hasMany(OrderLine);
 Ship.hasMany(OrderLine);
 
-//should it be user.hasMany(Payment) ??? not being used right now b/c pmt info is now attatched to user
-Payment.belongsTo(User);
-
 
 
 module.exports = {
-  User, Ship, Review, Payment, Cart, Wishlist
+  User, Ship, Review, Cart, Wishlist
 }
 
