@@ -17,11 +17,11 @@ router.get('/:userId', async (req, res, next) => {
 
 //post route to add to wishlist but send a message if the item is already in the wishlist
 //should this only be to /:userId ???
-router.post('/', async (req, res, next) => {
+router.post('/:userId', async (req, res, next) => {
   try {
     const usersWishList = await Wishlist.findOne({
       where: {
-        userId: req.body.userId,
+        userId: req.user.id,
         starshipId: req.body.starshipId
       }
     });
