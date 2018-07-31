@@ -24,7 +24,7 @@ export const fetchWishes = (userId) => {
 export const addWish = (shipId, userId) => {
   console.log('ADDWISH THUNK is running')
   return async dispatch => {
-    const res = await axios.post(`/api/wishlist/${userId}`, {
+    const res = await axios.post(`/api/wishlist`, {
       starshipId: shipId,
       userId
     });

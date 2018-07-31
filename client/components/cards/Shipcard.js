@@ -22,7 +22,7 @@ class ShipCard extends Component {
   addingToWishList(shipId) {
     console.log('SHIPID', shipId)
     console.log('USER', this.props.user)
-    this.props.putInWishList(shipId, this.props.user)
+    this.props.putInWishList(this.props.user, shipId)
     alert('Added to Wish List');
   }
 
