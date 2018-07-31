@@ -135,9 +135,9 @@ const MapStateToProps = state => {
 
 const MapDispatchToProps = dispatch => {
   return {
-    removeShip : (shipId,userId)=> (dispatch(removeShip(shipId,userId))),
-    changingQuantity : (shipId,userId,quantity) => (dispatch(changingQuantity(shipId,userId,quantity)))
+    removeShip : (shipId, userId) => (dispatch(removeShip(shipId, userId))),
+    changingQuantity : (shipId, userId, quantity) => (dispatch(changingQuantity(shipId, userId, quantity)))
   }
 }
 
-export default  connect(MapStateToProps,MapDispatchToProps)(CartItems)
+export default  connect(MapStateToProps, MapDispatchToProps)(CartItems)

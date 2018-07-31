@@ -56,7 +56,6 @@ class Navbar extends Component {
         <ul>
           <li><Link className="active" to="/home">Home</Link></li>
           <li><Link to="/starships">All Ships</Link></li>
-          <li className='right'><Link to="/account">Account Setting</Link></li>
           <li className='right'><Link to="/cart">Cart (0)</Link></li>
           <li className='right'><Link to='/login'>Login</Link></li>
           <li className='right'><Link to='/signup'>Sign Up</Link></li>

@@ -4,6 +4,7 @@ const Review = require('./review');
 const Cart = require('./cart');
 const Wishlist = require('./wishlist');
 const Payment = require('./payment');
+const OrderLine = require('./orders');
 
 
 //Reviews
@@ -35,6 +36,10 @@ Wishlist.belongsTo(Ship);
 Ship.belongsToMany(User, { through: Wishlist });
 User.belongsToMany(Ship, { through: Wishlist });
 
+//User can have many orders (each orderline is a different line on the order)
+//orders will be filtered by date into groups(cards)
+User.hasMany(OrderLine);
+Ship.hasMany(OrderLine);
 
 //should it be user.hasMany(Payment) ??? not being used right now b/c pmt info is now attatched to user
 Payment.belongsTo(User);

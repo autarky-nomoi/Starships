@@ -9,10 +9,11 @@ import ship from './ship';
 import review from './review';
 import cart from './cart/reducer';
 import wishReducer from './wishList';
+import OrdersReducer from './orders';
 
 const reducer = combineReducers({
   
-  user, ship, review, cart, wishReducer, session: sessionReducer
+  user, ship, review, cart, wishReducer, OrdersReducer, session: sessionReducer
 
 });
 const middleware = composeWithDevTools(

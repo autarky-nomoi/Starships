@@ -39,9 +39,6 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  creditCard: {
-    type: Sequelize.STRING
-  },
   address: {
     type: Sequelize.STRING
   },
