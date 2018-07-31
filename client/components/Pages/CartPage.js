@@ -10,29 +10,19 @@ import Summary from '../forms/summary'
 
 class CartPage extends Component {
 
-  // constructor(props){
-  //   super(props)
-  //   this.state={
-  //     userCart : {}
-  //   }
-  // }
-
   componentDidMount() {
+    console.log('MOUNT USER', this.props.user.id)
     this.props.getCart(this.props.user.id)
-    this.setState({
-      userCart : this.props.cart
-    })
   }
 
   render() {
     const user = this.props.user
-    console.log(user)
 
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
     const Usercart = this.props.cart
 
-    console.log(this.props.cart)
+    console.log('CART' , this.props.cart)
     return(
 
       <div className = 'cart' >

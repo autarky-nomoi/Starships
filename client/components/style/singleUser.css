@@ -50,3 +50,7 @@ input[type=text] {
 }
 
 .button4:hover {background-color: #e7e7e7;}
+
+.err-handler {
+    color: red;
+}
