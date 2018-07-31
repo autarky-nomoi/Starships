@@ -33,7 +33,7 @@ class CartPage extends Component {
     const Usercart = this.props.cart
 
     console.log(this.props.cart)
-
+    
           <div className='list-item-cal'>
             <hr />
 
