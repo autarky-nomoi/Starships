@@ -4,13 +4,8 @@ module.exports = router
 
 
 //GET all ships
-<<<<<<< HEAD
-router.get('/:id', async (req, res, next) => {
-  console.log('SESSION', req.session)
-=======
 router.get('/', async (req, res, next) => {
 
->>>>>>> a002e709bbc93e7db7c60520b4afa506675dc9d1
   try {
     if(req.user){
       const response = await Cart.findAll({
