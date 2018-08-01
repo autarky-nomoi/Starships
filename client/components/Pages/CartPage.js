@@ -5,52 +5,80 @@ import { getCart, getSubtotal } from '../../store/cart/thunk'
 import CheckoutSummaryCard from '../cards/CheckoutSummaryCard'
 
 require('../style/cart.css')
-import Summary from '../forms/summary'
 
-// const showLocalStorage = () => {
-//   // localStorage.clear();
-//   console.log('local Storage')
-//   let cartObj = {}
-//   for(var i =0; i < localStorage.length; i++){
-//     cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
-//   }
-//   return cartObj
-// }
-// const gettingGuestShip =(objArr,ships) =>{
-//   const result = ships.filter((ship,index)=>{
-//     return objArr.includes(ship.id + "")
-//   })
-//   return result
-// }
+const showLocalStorage = () => {
+  // localStorage.clear();
+  console.log('local Storage' )
+  let cartObj = {}
+  for(var i =0; i < localStorage.length; i++){
+    cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
+  }
+  return cartObj
+ }
+ const gettingGuestShip =(objArr,ships) =>{
+  console.log('ships',ships )
+  const allguestcart =  showLocalStorage()
+  let tempship = ships;
+  tempship.forEach((ship,index)=>{
+    ship.starship = ship
+    ship.quantity = allguestcart[ship.id]
+    
+  })
+  let tempObj = Object.keys(objArr)
+  console.log(tempObj)
 
-// const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
-//   let totalCount = 0;
-//   let totalPrice = 0;
-//   ships.forEach((ship)=>{
-
-//       totalCount += Number(guestCart[ship])
-//       console.log(GuestShip)
-//       totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
-//   })
-//   return {
-//     totalCount,
-//     totalPrice
-//   }
-// }
+ const result =  tempship.filter((ship,index)=>{
+    return tempObj.includes(ship.id + "")
+  })
+  return(result)
+  
+ }
+ 
+ const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
+  let totalCount = 0;
+  let totalPrice = 0;
+  
+  ships.forEach((ship)=>{
+    console.log(typeof ship)
+      if(ship.match(/^-?\d+$/)) {
+        totalCount += Number(guestCart[ship])
+        console.log(guestCart)
+        totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
+      }
+  })
+  return {
+    totalCount,
+    totalPrice
+  }
+ }
 
 
 
 class CartPage extends Component {
+  constructor(){
+    super()
+    this.state = {
+      result : []
+    }
+  }
 
   componentDidMount() {
     if(!this.props.isLoggedIn){
-      console.log('this is a guest')
+  
+      this.props.getCart()
+      const allShips = this.props.cart 
+      const objArr =  showLocalStorage()
+ 
+     const result = gettingGuestShip(objArr,allShips)
+      this.setState({
+        result 
+      })
+     console.log(result)
     }
   }
 
   render() {
     const Usercart = this.props.cart
-    console.log('this is local storage',localStorage)
     return (
       <div>
     {
@@ -113,21 +141,25 @@ class CartPage extends Component {
             </div>
 
             <div className='ship-list'> 
-              {/* {
-                Usercart.map((ship,index)=>{
+              {
+                this.state.result.length >= 1 ? 
+                this.state.result.map((ship,index)=>{
                   return (
-                    <CartItem ship={ship} key={index}/>
+                    <CartItem ship={ship} key={index} />
                   )
                 })
-              }               */}
+                : 
+                
+                <h1> no result </h1>
+              }               
               <h1> List of all guest</h1>
             </div>
 
       </div>
     </div>
             <div className='summary-card'>
-              {/* <CheckoutSummaryCard iaCheckout={true} Usercart={Usercart}/> */}
-              <h1> Summary</h1>
+              <CheckoutSummaryCard iaCheckout={true} Usercart={this.state.result}/>
+
             </div>
     </div> 
       
