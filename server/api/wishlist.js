@@ -5,7 +5,6 @@ module.exports = router;
 
 //get all ships by user's wishlist
 router.get('/', async (req, res, next) => {
-  console.log
   try {
     if(req.user){
       const result = await Wishlist.findAll({

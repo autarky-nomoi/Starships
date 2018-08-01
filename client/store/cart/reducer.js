@@ -21,7 +21,7 @@ const initState = {
             return {...cartState, cart : action.payload}
 
             case GET_CART:
-            return {...cartState, cart : action.payload}
+            return {...cartState, cart : [...action.payload]}
 
             case GET_SUBTOTAL:
             return {...cartState, subtotal : action.payload}

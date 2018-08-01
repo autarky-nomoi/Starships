@@ -8,6 +8,7 @@ import ship from './ship';
 import review from './review';
 import cart from './cart/reducer';
 import wishReducer from './wishList';
+import OrdersReducer from './orders';
 
 
 
