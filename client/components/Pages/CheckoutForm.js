@@ -40,7 +40,7 @@ class CheckoutForm extends Component {
         return (
         <div className="checkout">
             <p className='title-checkout'>Would you like to complete the purchase?</p>
-            <CheckoutSummaryCard isCheckout={false} subtotal={this.props.subtotal} shipCount={this.props.shipCount}/>
+            <CheckoutSummaryCard isCheckout={false} Usercart={this.props.Usercart}/>
             <div >
                 <div className='card-input'>
                     <CardElement className='StripeElement' style =

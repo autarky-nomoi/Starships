@@ -77,14 +77,6 @@ import {addedToCart,
             try {
                 const {data} = await axios.get(`/api/cart`)
                 dispatch(gotCart(data))
-                let subtotal = 0
-                let totalShipsCount = 0
-                data.forEach((ship)=>{
-                    subtotal += (ship.starship.price * ship.quantity)
-                    totalShipsCount  += ship.quantity
-                })
-                dispatch(gotSubtotal(subtotal))
-                dispatch(gotShipCount(totalShipsCount))
             } catch (error) {
                 console.log(error)
             }

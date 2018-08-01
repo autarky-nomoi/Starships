@@ -48,10 +48,7 @@ class CartPage extends Component {
 
   render() {
     const Usercart = this.props.cart
-
-
-    // const guestSubTotal = guestSummaryFunc(guestUserCart,guestCart, GuestShip)
-    // console.log(localStorage)
+    console.log('this is local storage',localStorage)
     return (
       <div>
     {
@@ -89,7 +86,7 @@ class CartPage extends Component {
       </div>
     </div>
             <div className='summary-card'>
-              <CheckoutSummaryCard Usercart={Usercart}/>
+              <CheckoutSummaryCard iaCheckout={true} Usercart={Usercart}/>
             </div>
     </div> 
       
@@ -125,7 +122,7 @@ class CartPage extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('this is state',state)
+  console.log('this is state',state.cart)
   return {
     ships : state.ship.ships,
     isLoggedIn: !!state.user.id,

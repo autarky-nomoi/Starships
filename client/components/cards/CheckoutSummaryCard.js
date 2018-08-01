@@ -51,7 +51,7 @@ const SummaryCard = (props) => {
         </div>
 
         <div className='checkout'>
-        <Link to='/checkout' className="button button2">Checkout</Link> 
+        {!props.isCheckout ? <Link to='/checkout' className="button button2">Checkout</Link> :null }
 
         </div>
         </div>

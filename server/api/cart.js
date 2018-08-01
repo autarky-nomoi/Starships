@@ -15,7 +15,8 @@ router.get('/', async (req, res, next) => {
   
       res.json(response);
     }else{
-      res.sendStatus(403)
+      const allShips = await Ship.findAll()
+      res.json(allShips)
     }
   } catch (error) { next(error) }
 });
