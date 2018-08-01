@@ -10,13 +10,18 @@ import cart from './cart/reducer';
 import wishReducer from './wishList';
 import OrdersReducer from './orders';
 
+
+
+
+
+
 const reducer = combineReducers({
   
   user, ship, review, cart, wishReducer, 
 
 });
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+  applyMiddleware(thunkMiddleware,  createLogger({collapsed: true}))
 )
 
 
