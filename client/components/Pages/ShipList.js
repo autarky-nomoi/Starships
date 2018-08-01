@@ -10,7 +10,7 @@ class ShipList extends Component {
     this.props.fetchShips();
   }
   render() {
-    const { ships, putInCart, sessionUser} = this.props;
+    const { ships } = this.props;
 
     return (
       <div>

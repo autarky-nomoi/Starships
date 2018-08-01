@@ -53,7 +53,6 @@ class CartPage extends Component {
 
 
   render() {
-    console.log('this is cart page object',showLocalStorage())
     const ships = this.props.ships
 
     const guestCart = showLocalStorage()
@@ -62,7 +61,6 @@ class CartPage extends Component {
 
 
 
-    // console.log(guestSummary)
     const user = this.props.user
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
@@ -71,23 +69,24 @@ class CartPage extends Component {
     const guestSubTotal = guestSummaryFunc(guestUserCart,guestCart, GuestShip)
     console.log(localStorage)
     return (
-      <div className='cart'>
-      <div className='products'>
-            <h1 className='color center' > Your Cart </h1>
 
+      <div className = 'cart' >
+        <div className='products'>
+          <h1 className='color center'>Your Cart</h1>
+  
           <div className='list-item-cal'>
             <hr />
-
+  
             <div className='list-item'>
-            <p className='color'>Item</p>
+              <p className='color'>Item</p>
             </div>
-
+  
             <div className='list-price'>
-            <p className='color'>Price</p>
+              <p className='color'>Price</p>
             </div>
-
+  
             <div className='list-quantity '>
-            <p className='color'>Quantity</p>
+              <p className='color'>Quantity</p>
             </div>
             <hr />
             {this.props.isLoggedIn ?
@@ -121,8 +120,7 @@ class CartPage extends Component {
           <CheckoutSummaryCard isCheckout={true} subtotal={subtotal} shipCount={shipCount}/>
 
         :
-       <CheckoutSummaryCard isCheckout={true} subtotal={guestSubTotal.totalPrice} shipCount={guestSubTotal.totalCount}/>
-
+      <CheckoutSummaryCard isCheckout={true} subtotal={guestSubTotal.totalPrice} shipCount={guestSubTotal.totalCount}/>
 
         }
       </div>
@@ -131,7 +129,6 @@ class CartPage extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('this is state',state)
   return {
     ships : state.ship.ships,
     isLoggedIn: !!state.user.id,

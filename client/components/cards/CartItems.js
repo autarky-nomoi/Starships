@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import {removeShip,changingQuantity} from '../../store/cart/thunk'
+import {removeShip, changingQuantity} from '../../store/cart/thunk'
 
 require('./style/CartItems.css')
 
-class CartItems extends Component {
+export class CartItems extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -22,13 +22,13 @@ class CartItems extends Component {
       const userId = this.props.user.id 
       const shipId = this.props.ship.starship.id 
       
-      this.props.changingQuantity(shipId,userId,quantity)
+      this.props.changingQuantity(shipId, userId, quantity)
 
       this.setState({
         quantity : ''
       })
 
-    }else {
+    } else {
       alert(`Must input a number in quantity for: ${this.props.ship.starship.name}` )
     }
   }
@@ -46,7 +46,6 @@ class CartItems extends Component {
   }
 
   render() {
-    console.log(this.state)
     const ship = this.props.ship
     const shipInfo = this.props.ship.starship
     
@@ -81,8 +80,6 @@ class CartItems extends Component {
           </form>
           </div>
 
-        
-
           <hr />
       </div>
 
@@ -103,4 +100,5 @@ const MapDispatchToProps = dispatch => {
   }
 }
 
-export default  connect(MapStateToProps,MapDispatchToProps)(CartItems)
+
+export default connect(MapStateToProps, MapDispatchToProps)(CartItems)

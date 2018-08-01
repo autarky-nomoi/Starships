@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import { connect } from 'react-redux';
+import { postOrder } from '../../store/orders';
+import { getCart } from '../../store/cart/thunk';
 
 //need to import correct thunk from store to get user and then make maptostate and dispatch
 
@@ -19,7 +21,14 @@ class CheckoutForm extends Component {
       body: token.id
     });
   
-    if (response.ok) console.log("Purchase Complete!")
+    if (response.ok) {
+      console.log("Purchase Complete!")
+      //need to send userId and items from cart (shipId's, prices, and quantities) to orders db
+      //all are available from the cart except the price
+      //make an association to include price on the cart
+      const userCart = this.props.cart;
+      userCart.forEach(item => postOrder(item.userId, item.shipId, item.quantity, item.price));
+    }
   }
 
   render() {
@@ -34,6 +43,24 @@ class CheckoutForm extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    cart : state.cart.cart,
+    user : state.user,
+    subtotal : state.cart.subtotal,
+    shipCount : state.cart.shipCount
+  }
+}
+
+mapDispatchToProps = dispatch => {
+  return {
+    postOrder: (useId, shipId, quantity, price) => (dispatch(postOrder(useId, shipId, quantity, price))),
+    getCart : userId => (dispatch(getCart(userId))),
+  }
+}
+
+//what do i do here???
+// export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)
 export default injectStripe(CheckoutForm);
 
 // class CheckoutForm extends Component {

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {addReviews} from '../../store/review'
 import ReviewForm from './ReviewForm'
+require('../style/singleUser.css')
 
 const AddReviewForm = ({handleSubmit, ship, user}) => (
   <React.Fragment>

@@ -1,4 +1,5 @@
 import React from 'react'
+require('../style/singleUser.css')
 
 
 
@@ -28,16 +29,23 @@ class ReviewForm extends React.Component {
     return (
       <div>
 
-        <form onSubmit={evt => this.props.handleSubmit(evt, this.state)}>
-          <label>
-            <label htmlFor="content">Review content:</label>
+        <form className='color' onSubmit={evt => this.props.handleSubmit(evt, this.state)}>
+        <div className='form-container'>
+          <label>User Reviews:</label>
             <input name="content" type = "text" value = {this.state.content || ''} onChange={this.handleInputChange} />
-            <label htmlFor="rate">Review rate (0-5):</label>
+
+            <hr />
+
+            <label htmlFor="rate">Rating (0-5):</label>
             <input name="rate" type = "text" value = {this.state.rate || ''} onChange={this.handleInputChange} />
-            <h1>{!this.state.content ? "name required": "name is done"}</h1>
-            <h1>{!(this.state.rate < 5 ) ? "rate should be 0-5": "rate is required"}</h1>
+
+            <hr />
+
+            <h1 className='err-handler'>{!this.state.content ? "name required": "name is done"}</h1>
+          
+            <h1 className='err-handler'>{!(this.state.rate < 5 ) ? "rate should be 0-5": "rate is required"}</h1>
             <button type="submit">Add review</button>
-          </label>
+          </div>
         </form>
       </div>
     )
