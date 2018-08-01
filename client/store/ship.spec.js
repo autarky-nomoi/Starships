@@ -96,12 +96,6 @@ describe('thunk creators', () => {
 
 
 
-
-
-
-
-
-
 describe('Reducer', () => {
 
   it('returns the initial state by default', () => {
