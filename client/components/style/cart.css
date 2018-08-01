@@ -12,13 +12,13 @@
 }
 
 .total {
-    width: 30%;
-    background-color: lightgray;
+    width: 100%;
+    background-color: gray;
     float: right;
     display: inline-block;
 }
 .summary {
-    margin: 20px 20px 20px 20px;
+    /* margin: 20px 20px 20px 20px; */
 }
 .checkout {
     width: 100%;
@@ -81,4 +81,11 @@
 }
 .center {
     text-align: center;
+}
+.summary-card {
+    width: 30%;
+    float: right;
+    display: inline-block;
+    background-color: aqua;
+    
 }

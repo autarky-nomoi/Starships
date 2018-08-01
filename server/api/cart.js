@@ -15,13 +15,14 @@ router.get('/', async (req, res, next) => {
   
       res.json(response);
     }else{
-      res.sendStatus(403)
+      const allShips = await Ship.findAll()
+      res.json(allShips)
     }
   } catch (error) { next(error) }
 });
 
 //changing quantity
-router.put('/:userId', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
   console.log('put route to update quantity' , req.body)
   try {
     await Cart.update({
@@ -29,7 +30,7 @@ router.put('/:userId', async (req, res, next) => {
     },
       {
         where: {
-          userId: req.params.userId,
+          userId: req.user.id,
           starshipId: req.body.shipId
         }
       }

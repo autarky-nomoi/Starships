@@ -17,7 +17,7 @@ class Checkout extends Component {
             <div className="example">
             <h1>Checkout</h1>
             <Elements>
-                <CheckoutForm subtotal={this.props.subtotal} shipCount={this.props.shipCount}/>
+                <CheckoutForm Usercart={this.props.cart}/>
             </Elements>
             </div>
         </StripeProvider>
