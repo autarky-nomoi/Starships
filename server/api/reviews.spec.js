@@ -6,7 +6,7 @@ const Review = db.model('reviews')
 
 xdescribe('Review routes', () => {
   beforeEach(async () => {
-    await db.sync({force: true})
+    db.sync({force: true})
   })
 
   describe('/api/reviews', () => {

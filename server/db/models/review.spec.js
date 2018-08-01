@@ -17,20 +17,6 @@ describe('Review model', () => {
       }
     });
 
-    xit('requires name to not be an empty string', async () => {
-      const ship = Ship.build({
-        name: ''
-      });
-
-      try {
-        await ship.validate()
-        throw Error('validation was successful but should have failed if name is an empty string');
-      } catch (err) {
-        expect(err.message).to.contain('Validation error');
-        /* handle error */
-      }
-    });
-
     it('requires rate', async () => {
       const review = Review.build();
 
