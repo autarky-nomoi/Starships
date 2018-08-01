@@ -5,7 +5,7 @@ import {removeShip, changingQuantity} from '../../store/cart/thunk'
 
 require('./style/CartItems.css')
 
-class CartItems extends Component {
+export class CartItems extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -46,7 +46,6 @@ class CartItems extends Component {
   }
 
   render() {
-    console.log(this.state)
     const ship = this.props.ship
     const shipInfo = this.props.ship.starship
     
@@ -100,5 +99,6 @@ const MapDispatchToProps = dispatch => {
     changingQuantity : (shipId, userId, quantity) => (dispatch(changingQuantity(shipId, userId, quantity)))
   }
 }
+
 
 export default connect(MapStateToProps, MapDispatchToProps)(CartItems)
