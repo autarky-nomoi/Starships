@@ -44,6 +44,7 @@ class Navbar extends Component {
             </Dropdown>
           </Menu>
         </ul>
+        
       </div>
       :
       <div className='navbar'>
