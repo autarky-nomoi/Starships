@@ -8,6 +8,8 @@ require('../style/cart.css')
 import Summary from '../forms/summary'
 
 const showLocalStorage = () => {
+  // localStorage.clear();
+  console.log('local Storage')
   let cartObj = {}
   for(var i =0; i < localStorage.length; i++){
     cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
@@ -41,18 +43,23 @@ const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
 class CartPage extends Component {
 
   componentDidMount() {
-    this.props.getCart(this.props.user.id)
-    
+    this.props.getCart()
+
   }
+
+
+
+
+
 
   render() {
     const ships = this.props.ships
-    
+
     const guestCart = showLocalStorage()
     const guestUserCart =  Object.keys(showLocalStorage())
     const GuestShip = gettingGuestShip(guestUserCart,ships)
-    
-    
+
+
 
     const user = this.props.user
     const shipCount = (this.props.shipCount)
@@ -91,7 +98,7 @@ class CartPage extends Component {
                     )
                   })
                 }
-                
+
               </div>
               : <div className='ship-list'>
 
@@ -104,7 +111,7 @@ class CartPage extends Component {
                   )
                 })
               }
-              
+
               </div>
             }
           </div>
@@ -136,7 +143,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getCart: userId => (dispatch(getCart(userId))),
     getSubtotal: userCart => (dispatch(getSubtotal(userCart))),
-    
+
   }
 }
 

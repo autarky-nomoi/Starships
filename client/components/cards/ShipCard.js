@@ -35,13 +35,14 @@ const button = (user, ship) => {
 class ShipCard extends Component {
 
   addingToCart(shipId){
-    this.props.putInCart(shipId, this.props.user)
+    this.props.me()
+    this.props.putInCart(shipId)
     alert('Added to Cart')
   }
 
   addingToWishList(shipId){
     this.props.addWish(shipId)
-    alert('Added to Wish List')
+    alert('Added to Wishlist ')
   }
 
 
@@ -94,7 +95,7 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = dispatch =>{
   return {
 
-    putInCart: (shipId, user) => dispatch(putInCart(shipId, user.id)),
+    putInCart: (shipId) => dispatch(putInCart(shipId)),
     me : ()=> dispatch(me()),
     addWish: (shipId) => dispatch(addWish(shipId))
   }

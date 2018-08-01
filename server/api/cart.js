@@ -4,15 +4,24 @@ module.exports = router
 
 
 //GET all ships
+<<<<<<< HEAD
 router.get('/:id', async (req, res, next) => {
   console.log('SESSION', req.session)
+=======
+router.get('/', async (req, res, next) => {
+
+>>>>>>> a002e709bbc93e7db7c60520b4afa506675dc9d1
   try {
-    const response = await Cart.findAll({
-      include : [{model : Ship}],
-      where : {userId : req.params.id}
-    });
-    console.log('get response',response)
-    res.json(response);
+    if(req.user){
+      const response = await Cart.findAll({
+        include : [{model : Ship}],
+        where : {userId : req.user.id}
+      });
+  
+      res.json(response);
+    }else{
+      res.sendStatus(403)
+    }
   } catch (error) { next(error) }
 });
 
@@ -39,7 +48,7 @@ router.post('/', async (req,res,next) => {
     // getting get cart based on userId and shipId
     const usersCart = await Cart.findOne({
       where : {
-        userId : req.body.userId,
+        userId : req.user.id,
         starshipId : req.body.starshipId
       }
     })
@@ -52,7 +61,7 @@ router.post('/', async (req,res,next) => {
       const response =  await Cart.update({
           quantity : (req.body.quantity ? req.body.quantity : usersCart.quantity + 1)
         },{
-          where : {userId: req.body.userId, starshipId: req.body.starshipId}
+          where : {userId: req.user.id, starshipId: req.body.starshipId}
         });
         res.json(response);
 
@@ -62,7 +71,7 @@ router.post('/', async (req,res,next) => {
 
       const newShip = await Cart.create({
         quantity : req.body.quantity ? req.body.quantity : 1,
-        userId : req.body.userId,
+        userId : req.user.id,
         starshipId : req.body.starshipId
       });
         res.json(newShip);
@@ -72,7 +81,7 @@ router.post('/', async (req,res,next) => {
 
       const response = await Cart.create({
         quantity : (req.body.quantity > 0 ? req.body.quantity : 1),
-        userId : req.body.userId,
+        userId : req.user.id,
         starshipId : req.body.starshipId
       });
       res.json(response);
@@ -82,15 +91,21 @@ router.post('/', async (req,res,next) => {
   }
 })
 
-router.delete('/:id/:shipid', async (req, res, next) => {
+router.delete('/:shipid', async (req, res, next) => {
+  console.log('api side for remove', req.user.id, req.params.shipid)
   try {
-    console.log('serverSide',req.params.id, req.params.shipid)
-    await Cart.destroy({
+    if(req.user){
+      console.log('delete server side', req.params.shipid, req.user.id)
+      await Cart.destroy({
       where : {
-        userId : req.params.id,
+        userId : req.user.id,
         starshipId : req.params.shipid
       }
     });
     res.json('removed')
+    }else {
+      res.sendStatus(403)
+    }
+
   } catch (error) { next(error) }
 });
