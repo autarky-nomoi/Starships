@@ -77,14 +77,8 @@ import {addedToCart,
 
     export const getCart = () => {
         return async dispatch => {
-<<<<<<< HEAD
             try {
                 const {data} = await axios.get(`/api/cart`)
-=======
-            if(userId){
-                const {data} = await axios.get(`/api/cart/${userId}`)
-                console.log('get cart working?')
->>>>>>> 9aa15ce4c60cc0cbf588cb3bbdbd5b18c83e1ac1
                 dispatch(gotCart(data))
                 let subtotal = 0
                 let totalShipsCount = 0
@@ -94,26 +88,9 @@ import {addedToCart,
                 })
                 dispatch(gotSubtotal(subtotal))
                 dispatch(gotShipCount(totalShipsCount))
-<<<<<<< HEAD
             } catch (error) {
                 console.log(error)
             }
-=======
-
-            } 
-            // else {
-            //     const {data} = await axios.get(`/api/cart/${userId}`)
-            //     dispatch(gotCart(data))
-            //     let subtotal = 0
-            //     let totalShipsCount = 0
-            //     data.forEach((ship)=>{
-            //         subtotal += (ship.starship.price * ship.quantity)
-            //         totalShipsCount  += ship.quantity
-            //     })
-            //     dispatch(gotSubtotal(subtotal))
-            //     dispatch(gotShipCount(totalShipsCount))
-            // }
->>>>>>> 9aa15ce4c60cc0cbf588cb3bbdbd5b18c83e1ac1
         }
     }
 

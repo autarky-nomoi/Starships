@@ -4,7 +4,6 @@ module.exports = router
 
 
 //GET all ships
-<<<<<<< HEAD
 router.get('/', async (req, res, next) => {
 
   try {
@@ -18,17 +17,6 @@ router.get('/', async (req, res, next) => {
     }else{
       res.sendStatus(403)
     }
-=======
-router.get('/:id', async (req, res, next) => {
-  console.log('user side', req.user.id)
-  try {
-    const response = await Cart.findAll({
-      include : [{model : Ship}],
-      where : {userId : req.params.id}
-    });
-    console.log('get response',response)
-    res.json(response);
->>>>>>> 9aa15ce4c60cc0cbf588cb3bbdbd5b18c83e1ac1
   } catch (error) { next(error) }
 });
 
