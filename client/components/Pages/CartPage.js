@@ -42,15 +42,8 @@ const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
 
 class CartPage extends Component {
 
-  // constructor(props){
-  //   super(props)
-  //   this.state={
-  //     userCart : {}
-  //   }
-  // }
-
   componentDidMount() {
-    this.props.getCart(this.props.user.id)
+    this.props.getCart()
 
   }
 

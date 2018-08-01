@@ -47,10 +47,9 @@ class SingleShipPage extends Component {
     this.props.fetchSingleShip(id);
   }
 
-  async onSubmitHandler(evt){
+  onSubmitHandler(evt){
     evt.preventDefault()
-    await this.props.putInCart(this.props.singleShip.id,this.props.user.id,this.state.quantity)
-    // await this.props.changingQuantity(this.props.singleShip.id,this.user.id,this.state.quantity)
+    this.props.putInCart(this.props.singleShip.id,this.state.quantity)
   }
 
   onChangeHandler(evt){
@@ -70,30 +69,6 @@ class SingleShipPage extends Component {
     const singleShip = this.props.singleShip;
     return (
       <div>
-        {/* <h3>{singleShip.name}</h3>
-        <h3>{singleShip.price}</h3>
-
-        <hr />
-        <img src={singleShip.imageUrl} />
-
-        <hr />
-        <p>Manufacturer: {singleShip.manufacturer}</p>
-        <p>Model: {singleShip.model}</p>
-
-        <hr />
-        <p>Quantity:</p>
-        <button onClick={() => {
-          if(this.state.quantity > 0){
-            this.setState({quantity:this.state.quantity-1})
-          }}}> -</button>
-        <h6>{this.state.quantity}</h6>
-        <button onClick={() => {this.setState({quantity:this.state.quantity+1})}} >+</button>
-
-        <hr />
-        <button onClick={() => this.props.putInCart(singleShip.name, this.state.quantity)}>Add To Cart</button>
-        <hr />
-        reviews */}
-
         <div>
           {/* Picture */}
           <div className='single-ship-container'>
@@ -160,7 +135,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
 
-    putInCart : (shipId,userId,quantity)=> (dispatch(putInCart(shipId,userId,quantity))),
+    putInCart : (shipId,quantity)=> (dispatch(putInCart(shipId,quantity))),
     deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId, ownProps)),
 
     // changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
