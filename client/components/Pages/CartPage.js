@@ -27,10 +27,12 @@ const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
   let totalCount = 0;
   let totalPrice = 0;
   ships.forEach((ship)=>{
-
-      totalCount += Number(guestCart[ship])
-      console.log(GuestShip)
-      totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
+      if(typeof guestCart[ship] === 'number') {
+        totalCount += Number(guestCart[ship])
+        console.log(guestCart)
+        totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
+      }
+      
   })
   return {
     totalCount,
@@ -67,7 +69,7 @@ class CartPage extends Component {
     const Usercart = this.props.cart
 
     const guestSubTotal = guestSummaryFunc(guestUserCart,guestCart, GuestShip)
-    console.log(localStorage)
+    console.log(guestCart)
     return (
 
       <div className = 'cart' >
