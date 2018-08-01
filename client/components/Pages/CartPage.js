@@ -43,12 +43,8 @@ const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
 class CartPage extends Component {
 
   componentDidMount() {
-<<<<<<< HEAD
     this.props.getCart()
-=======
-    this.props.getCart(this.props.user.id)
 
->>>>>>> 9aa15ce4c60cc0cbf588cb3bbdbd5b18c83e1ac1
   }
 
 
@@ -57,15 +53,12 @@ class CartPage extends Component {
 
 
   render() {
-<<<<<<< HEAD
-=======
     console.log('this is cart page object',showLocalStorage())
     const ships = this.props.ships
 
     const guestCart = showLocalStorage()
     const guestUserCart =  Object.keys(showLocalStorage())
     const GuestShip = gettingGuestShip(guestUserCart,ships)
->>>>>>> 9aa15ce4c60cc0cbf588cb3bbdbd5b18c83e1ac1
 
 
 
