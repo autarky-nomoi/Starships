@@ -43,7 +43,9 @@ import Summary from '../forms/summary'
 class CartPage extends Component {
 
   componentDidMount() {
-    // this.props.getCart()
+    if(!this.props.isLoggedIn){
+      console.log('this is a guest')
+    }
   }
 
   render() {
@@ -92,37 +94,50 @@ class CartPage extends Component {
       
       :
       //guest
-      <h1> this is a guest</h1>
-    }
+      <div className='cart'> 
+      <div className='products'>
+      <h1 className='color center' > Your Cart </h1>
+      <div className='list-item-cal'>
+            <hr />
 
-      {/* <div className='cart'> 
-        <div className='products'>
-        <h1 className='color center' > Your Cart </h1>
-        <div className='list-item-cal'>
-              <hr />
+            <div className='list-item'>
+            <p className='color'>Item</p>
+            </div>
 
-              <div className='list-item'>
-              <p className='color'>Item</p>
-              </div>
+            <div className='list-price'>
+            <p className='color'>Price</p>
+            </div>
 
-              <div className='list-price'>
-              <p className='color'>Price</p>
-              </div>
+            <div className='list-quantity '>
+          <p className='color'>Quantity</p>
+            </div>
 
-              <div className='list-quantity '>
-            <p className='color'>Quantity</p>
-              </div>
+            <div className='ship-list'> 
+              {/* {
+                Usercart.map((ship,index)=>{
+                  return (
+                    <CartItem ship={ship} key={index}/>
+                  )
+                })
+              }               */}
+              <h1> List of all guest</h1>
+            </div>
 
-        </div>
       </div>
-      </div> */}
+    </div>
+            <div className='summary-card'>
+              {/* <CheckoutSummaryCard iaCheckout={true} Usercart={Usercart}/> */}
+              <h1> Summary</h1>
+            </div>
+    </div> 
+      
+    }
     </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  console.log('this is state',state.cart)
   return {
     ships : state.ship.ships,
     isLoggedIn: !!state.user.id,
@@ -143,61 +158,3 @@ const mapDispatchToProps = dispatch => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage)
-
-
-      // <div className='cart'>
-      // <div className='products'>
-      //       <h1 className='color center' > Your Cart </h1>
-
-      //     <div className='list-item-cal'>
-      //       <hr />
-
-      //       <div className='list-item'>
-      //       <p className='color'>Item</p>
-      //       </div>
-
-      //       <div className='list-price'>
-      //       <p className='color'>Price</p>
-      //       </div>
-
-      //       <div className='list-quantity '>
-      //       <p className='color'>Quantity</p>
-      //       </div>
-      //           <hr />
-      //     {this.props.isLoggedIn ?
-      //         <div className='ship-list '>
-      //           {
-      //             Usercart.map((item, index) => {
-      //               return (
-      //                 <CartItem userId={this.props.user.id} key={index} ship={item} />
-      //               )
-      //             })
-      //           }
-
-      //         </div>
-      //         :
-      //         // <div className='ship-list'>
-
-      //         {/* {
-      //           GuestShip.map((ship,index)=>{
-      //             ship.quantity = Number(guestCart[ship.id])
-      //             ship.starship = ship
-      //             return (
-      //               <CartItem key={index} ship={ship}/>
-      //             )
-      //           })
-      //         } */}
-            
-      //         // </div>
-      //       }
-      //     </div>
-      //   </div>
-      //   {this.props.isLoggedIn ?
-      //     <CheckoutSummaryCard isCheckout={true} subtotal={subtotal} shipCount={shipCount}/>
-
-      //   :
-      // // <CheckoutSummaryCard isCheckout={true} subtotal={guestSubTotal.totalPrice} shipCount={guestSubTotal.totalCount}/>
-
-      //     null
-      //   }
-      // </div>
