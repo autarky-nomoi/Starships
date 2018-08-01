@@ -41,6 +41,7 @@ class ShipCard extends Component {
 
   addingToWishList(shipId){
     this.props.addWish(shipId)
+    alert('Added to Wish List')
   }
 
 
@@ -65,11 +66,16 @@ class ShipCard extends Component {
       </Link>
 
         <div className='ship-info'>
-        {(Object.keys(user).length === 0)? button(user, ship)
-        :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
-
-        <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
+          {(Object.keys(user).length === 0)? button(user, ship)
+          :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
         </div>
+
+        <div className='ship-info'>
+          {this.props.isLoggedIn ?
+          <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
+          : null }
+        </div>
+        
 
       </div>
 
@@ -79,7 +85,8 @@ class ShipCard extends Component {
 }
 const mapStateToProps = state =>{
   return {
-    user : state.user
+    user : state.user,
+    isLoggedIn: !!state.user.id
   }
 
 }
