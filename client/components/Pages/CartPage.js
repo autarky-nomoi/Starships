@@ -9,7 +9,7 @@ import Summary from '../forms/summary'
 
 const showLocalStorage = () => {
   // localStorage.clear();
-  console.log('local Storage')
+  console.log('local Storage' )
   let cartObj = {}
   for(var i =0; i < localStorage.length; i++){
     cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
@@ -17,6 +17,7 @@ const showLocalStorage = () => {
   return cartObj
 }
 const gettingGuestShip =(objArr,ships) =>{
+  console.log('ships',ships )
   const result = ships.filter((ship,index)=>{
     return objArr.includes(ship.id + "")
   })
@@ -26,13 +27,14 @@ const gettingGuestShip =(objArr,ships) =>{
 const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
   let totalCount = 0;
   let totalPrice = 0;
+  
   ships.forEach((ship)=>{
-      if(typeof guestCart[ship] === 'number') {
+    console.log(typeof ship)
+      if(ship.match(/^-?\d+$/)) {
         totalCount += Number(guestCart[ship])
         console.log(guestCart)
         totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
       }
-      
   })
   return {
     totalCount,

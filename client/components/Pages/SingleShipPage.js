@@ -8,6 +8,7 @@ require('../style/singleShip.css')
 
 const reviewList = (reviews, props) => {
   if (!reviews) {return <h2>There are no reviews registered in the database</h2>}
+  console.log('props',props)
   return reviews.map(review => (
     <div key={review.id}>
       <ul>
@@ -18,7 +19,7 @@ const reviewList = (reviews, props) => {
         {
           !(props.user.id === review.userId)? <div></div>
           :(<div>
-            <button type="submit" onClick={() => props.deleteReview(review.id)}>
+            <button type="submit" onClick={() => { props.deleteReview(review.id); props.history.push(`/starships/${props.singleShip.id}`)} }>
                 delete this review
             </button>
           </div>)}
@@ -136,8 +137,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
 
     putInCart : (shipId,quantity)=> (dispatch(putInCart(shipId,quantity))),
-    deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId, ownProps)),
-
+    deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId, ownProps.history)),
+    // handleSubmit: async (event, campusData) =>{
+    //   event.preventDefault();
+    //   const campusAction = await dispatch(addCampuses(campusData));
+    //   const theId = campusAction.payload.id
+    //   ownProps.history.push(`/campuses/${theId}`)
+    // }
     // changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
   }
 
