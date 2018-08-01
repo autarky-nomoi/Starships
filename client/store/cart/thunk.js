@@ -23,22 +23,19 @@ import {addedToCart,
         }
     }
 
-    export const changingQuantity = (shipId,userId,quantity) => {
+    export const changingQuantity = (shipId,quantity) => {
         return async dispatch => {
             try {
-                if(userId){
-                    await axios.put(`/api/cart/${userId}`,{
+                
+                    await axios.put(`/api/cart/`,{
                         quantity,
                         shipId
                     })
-                    const {data} = await axios.get(`/api/cart/${userId}`)
-                    const newSubTotal = priceChanging(data)
-                    dispatch(gotSubtotal(newSubTotal.totalPrice))
-                    dispatch(gotShipCount(newSubTotal.totalCount))
-                    dispatch(changedQuantity(data))
-                }
+                    const {data} = await axios.get(`/api/cart/`)
+                    dispatch(gotCart(data))
+
             } catch (error) {
-                next(error)
+                console.log(error)
             }
         }
     }
@@ -80,14 +77,6 @@ import {addedToCart,
             try {
                 const {data} = await axios.get(`/api/cart`)
                 dispatch(gotCart(data))
-                let subtotal = 0
-                let totalShipsCount = 0
-                data.forEach((ship)=>{
-                    subtotal += (ship.starship.price * ship.quantity)
-                    totalShipsCount  += ship.quantity
-                })
-                dispatch(gotSubtotal(subtotal))
-                dispatch(gotShipCount(totalShipsCount))
             } catch (error) {
                 console.log(error)
             }
