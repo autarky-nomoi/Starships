@@ -19,10 +19,9 @@ class CartItems extends Component {
     evt.preventDefault()
     if ((Number(this.state.quantity) % 1) === 0 ){
       const quantity = Number(this.state.quantity)
-      const userId = this.props.user.id 
       const shipId = this.props.ship.starship.id 
       
-      this.props.changingQuantity(shipId,userId,quantity)
+      this.props.changingQuantity(shipId,quantity)
 
       this.setState({
         quantity : ''
@@ -46,7 +45,6 @@ class CartItems extends Component {
   }
 
   render() {
-    console.log(this.state)
     const ship = this.props.ship
     const shipInfo = this.props.ship.starship
     

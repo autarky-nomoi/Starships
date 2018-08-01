@@ -21,7 +21,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //changing quantity
-router.put('/:userId', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
   console.log('put route to update quantity' , req.body)
   try {
     await Cart.update({
@@ -29,7 +29,7 @@ router.put('/:userId', async (req, res, next) => {
     },
       {
         where: {
-          userId: req.params.userId,
+          userId: req.user.id,
           starshipId: req.body.shipId
         }
       }

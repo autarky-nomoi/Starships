@@ -8,7 +8,6 @@ import {addWish} from '../../store/wishList';
 import './style/shipCard.css'
 
 const showLocalStorage = () => {
-  console.log('local Storage') 
   let cartObj = {}
   for(var i =0; i < localStorage.length; i++){
     cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
@@ -34,7 +33,6 @@ const button = (user, ship) => {
 
 class ShipCard extends Component {
 
-
   addingToCart(shipId){
     this.props.me()
     this.props.putInCart(shipId)
@@ -47,6 +45,7 @@ class ShipCard extends Component {
   }
 
   render() {
+    console.log(this.props.user.id)
     const ship = this.props.ship
     const user = this.props.user
     return (
@@ -70,7 +69,7 @@ class ShipCard extends Component {
         {(Object.keys(user).length === 0)? button(user, ship)
         :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
 
-        <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
+        {this.props.user.id ? <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button> : null}
         </div>
 
       </div>
