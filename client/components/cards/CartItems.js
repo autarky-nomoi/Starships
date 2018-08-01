@@ -42,7 +42,7 @@ class CartItems extends Component {
   
   removeHandler(evt) {
     evt.preventDefault()
-    this.props.removeShip(this.props.ship.starship.id,this.props.userId)
+    this.props.removeShip(this.props.ship.starship.id)
   }
 
   render() {
@@ -98,7 +98,7 @@ const MapStateToProps = state => {
 
 const MapDispatchToProps = dispatch => {
   return {
-    removeShip : (shipId,userId)=> (dispatch(removeShip(shipId,userId))),
+    removeShip : (shipId)=> (dispatch(removeShip(shipId))),
     changingQuantity : (shipId,userId,quantity) => (dispatch(changingQuantity(shipId,userId,quantity)))
   }
 }

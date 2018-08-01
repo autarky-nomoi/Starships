@@ -51,26 +51,23 @@ import {addedToCart,
                 dispatch(gotShipCount(newSubTotal.totalCount))
             }
             catch(error){
-               console.log(error)
+            console.log(error)
             }
         }
     }
 
 
-    export const putInCart = (ship,user,quantity=0) => {
+    export const putInCart = (ship,quantity=0) => {
         return async dispatch => {
             //first checks if there is a user logged in
             try {
-                if(user){
                     await axios.post('/api/cart',{
                     "starshipId" : ship,
-                    "userId" : user,
                     "quantity": quantity
                     })
-                    const {data} = await axios.get(`/api/cart/${user}`)
-                    await dispatch(addedToCart(data))
-                    await getSubtotal(user)
-                }
+                    const {data} = await axios.get(`/api/cart`)
+                    console.log('thunk for adding',data)
+                    dispatch(addedToCart(data))
             } catch (error) {
                 console.log(error)
             }
@@ -78,10 +75,10 @@ import {addedToCart,
         }
     }
 
-    export const getCart = (userId) => {
+    export const getCart = () => {
         return async dispatch => {
-            if(userId){
-                const {data} = await axios.get(`/api/cart/${userId}`)
+            try {
+                const {data} = await axios.get(`/api/cart`)
                 dispatch(gotCart(data))
                 let subtotal = 0
                 let totalShipsCount = 0
@@ -91,7 +88,8 @@ import {addedToCart,
                 })
                 dispatch(gotSubtotal(subtotal))
                 dispatch(gotShipCount(totalShipsCount))
-
+            } catch (error) {
+                console.log(error)
             }
         }
     }
@@ -110,10 +108,12 @@ import {addedToCart,
             }
     }
 
-    export const removeShip = (shipId,userId) =>{
+    export const removeShip = (shipId) =>{
         return async dispatch => {
-            await axios.delete(`/api/cart/${userId}/${shipId}`)
-            const {data} = await axios.get(`/api/cart/${userId}`)
+            console.log('thunk for removed', shipId)
+            await axios.delete(`/api/cart/${shipId}`)
+            const {data} = await axios.get(`/api/cart/`)
+            console.log('new data after remove',data)
             dispatch(removedFromCart(data))
         }
     }
