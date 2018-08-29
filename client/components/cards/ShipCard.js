@@ -1,4 +1,4 @@
-
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchShips } from '../../store/ship';
@@ -15,9 +15,8 @@ const showLocalStorage = () => {
   return cartObj
 }
 
-import React, { Component } from 'react'
 
-const button = (user, ship) => {
+const button = ship => {
     return (
       <button onClick={()=>{
         let qty =  JSON.parse(localStorage.getItem(ship.id))
@@ -26,7 +25,6 @@ const button = (user, ship) => {
         } else {
           localStorage.setItem(ship.id, Number(1));
         }
-        console.log(showLocalStorage())
       }}  className="button button2">Add to cart</button>
     )
 }
@@ -72,9 +70,6 @@ class ShipCard extends Component {
 
         {this.props.user.id ? <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button> : null}
         </div>
-        
-
-
     )
   }
 }
