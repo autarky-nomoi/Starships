@@ -22,9 +22,9 @@ const button = (user, ship) => {
       <button onClick={()=>{
         let qty =  JSON.parse(localStorage.getItem(ship.id))
         if(qty) {
-          localStorage.setItem(ship.id, qty + 1);
+          localStorage.setItem(ship.id, Number(qty + 1));
         } else {
-          localStorage.setItem(ship.id, 1);
+          localStorage.setItem(ship.id, Number(1));
         }
         console.log(showLocalStorage())
       }}  className="button button2">Add to cart</button>

@@ -14,15 +14,12 @@ const showLocalStorage = () => {
     cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
   }
   return cartObj
- }
- const gettingGuestShip =(objArr,ships) =>{
+}
+const gettingGuestShip =(objArr,ships) =>{
   console.log('ships',ships )
-  const allguestcart =  showLocalStorage()
-  let tempship = ships;
-  tempship.forEach((ship,index)=>{
-    ship.starship = ship
-    ship.quantity = allguestcart[ship.id]
-    
+  const result = ships.filter((ship,index)=>{
+    return objArr.includes(ship.id + "")
+
   })
   let tempObj = Object.keys(objArr)
   console.log(tempObj)
@@ -79,6 +76,10 @@ class CartPage extends Component {
 
   render() {
     const Usercart = this.props.cart
+
+    const guestSubTotal = guestSummaryFunc(guestUserCart,guestCart, GuestShip)
+    console.log(guestCart)
+
     return (
       <div>
     {
