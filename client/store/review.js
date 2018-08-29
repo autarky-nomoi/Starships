@@ -30,7 +30,7 @@ export const addReviews = (reviewData, ownProps) => async (dispatch) => {
   }
 }
 
-export const deleteSingleReview = (reviewId, ownProps) => async (dispatch) => {
+export const deleteSingleReview = (reviewId) => async (dispatch) => {
 
   try {
     const response = await axios.delete(`/api/reviews/${reviewId}`)

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Review, User, Ship} = require('../db/models')
+const {Review, Ship} = require('../db/models')
 module.exports = router
 
 

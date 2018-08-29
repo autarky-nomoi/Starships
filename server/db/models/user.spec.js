@@ -31,4 +31,50 @@ describe('User model', () => {
       })
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
+
+
+  describe('Validations', () => {
+
+    it('requires email', async () => {
+      const user = User.build();
+
+      try {
+        await user.validate()
+        throw Error('validation was successful but should have failed without `email`');
+      }
+      catch (err) {
+        expect(err.message).to.contain('email cannot be null');
+      }
+    });
+
+    it('requires firstName to not be between 1 and 250 characters', async () => {
+      const user = User.build({
+        firstName: ''
+      });
+
+      try {
+        await user.validate()
+        throw Error('validation was successful but should have failed if firstName is not between 1 and 250 characters');
+      } catch (err) {
+        expect(err.message).to.contain('Validation error');
+        /* handle error */
+      }
+    });
+
+    it('requires lastName to not be between 1 and 250 characters', async () => {
+      const user = User.build({
+        lastName: ''
+      });
+
+      try {
+        await user.validate()
+        throw Error('validation was successful but should have failed if lastName is not between 1 and 250 characters');
+      } catch (err) {
+        expect(err.message).to.contain('Validation error');
+        /* handle error */
+      }
+    });
+
+  });
+
 }) // end describe('User model')
