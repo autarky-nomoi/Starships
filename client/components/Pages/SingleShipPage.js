@@ -10,25 +10,30 @@ const reviewList = (reviews, props) => {
   if (!reviews) {return <h2>There are no reviews registered in the database</h2>}
   console.log('props',props)
   return reviews.map(review => (
+    <li>
     <div key={review.id}>
       <ul>
       <li>
         <h3>reviewer: {review.userId}</h3>
-        <p>review content: {review.content}</p>
-        <p>review rate: {review.rate}</p>
+        <br />
+        <p>review content           <hr /> {review.content}</p>
+        <p>review rate {review.rate}</p>
         {
           !(props.user.id === review.userId)? <div></div>
           :(<div>
-            <button type="submit" onClick={() => { props.deleteReview(review.id); props.history.push(`/starships/${props.singleShip.id}`)} }>
+            <button type="submit" onClick={() => { props.deleteReview(review.id, props.singleShip.id); props.history.push(`/starships/${props.singleShip.id}`)} }>
                 delete this review
             </button>
+            <hr />
           </div>)}
       </li>
       </ul>
 
 
   </div>
-    ))
+  </li>
+    )
+  )
 }
 
 class SingleShipPage extends Component {
@@ -137,7 +142,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
 
     putInCart : (shipId,quantity)=> (dispatch(putInCart(shipId,quantity))),
-    deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId, ownProps.history)),
+    deleteReview: (reviewId,shipId) => dispatch(deleteSingleReview(reviewId, shipId)),
     // handleSubmit: async (event, campusData) =>{
     //   event.preventDefault();
     //   const campusAction = await dispatch(addCampuses(campusData));
