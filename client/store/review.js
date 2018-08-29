@@ -30,12 +30,14 @@ export const addReviews = (reviewData, ownProps) => async (dispatch) => {
   }
 }
 
-export const deleteSingleReview = (reviewId) => async (dispatch) => {
+export const deleteSingleReview = (reviewId, shipId) => async (dispatch) => {
 
   try {
-    const response = await axios.delete(`/api/reviews/${reviewId}`)
-    
-    return dispatch(deleteReview(response.data))
+    console.log(shipId)
+    const res = await axios.delete(`/api/reviews/${reviewId}`)
+    // const res = await axios.get(`/api/starships/${shipId}`);
+
+    return dispatch(deleteReview(res.data))
   } catch (error) {
     console.log(error)
   }
@@ -61,9 +63,11 @@ const reviewReducer = (state = initialState, action) => {
         reviews: action.payload
       }
     case DELETE_REVIEW:
+    console.log('state', state)
+      const remainingReviews = state.reviews.filter(review => review.id !== action.payload)
       return {
         ...state,
-        review: action.payload
+        reviews: remainingReviews
       }
 
     case START_LOADING:
