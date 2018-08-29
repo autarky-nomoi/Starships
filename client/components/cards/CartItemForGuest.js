@@ -46,7 +46,6 @@ class CartItemForGuest extends Component {
   }
 
   render() {
-    console.log(this.state)
     const ship = this.props.ship
     const shipInfo = this.props.ship.starship
     

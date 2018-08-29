@@ -8,7 +8,6 @@ import {addWish} from '../../store/wishList';
 import './style/shipCard.css'
 
 const showLocalStorage = () => {
-  console.log('local Storage') 
   let cartObj = {}
   for(var i =0; i < localStorage.length; i++){
     cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
@@ -71,14 +70,9 @@ class ShipCard extends Component {
           :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
         </div>
 
-        <div className='ship-info'>
-          {this.props.isLoggedIn ?
-          <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
-          : null }
+        {this.props.user.id ? <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button> : null}
         </div>
         
-
-      </div>
 
 
     )

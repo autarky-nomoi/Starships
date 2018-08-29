@@ -21,7 +21,7 @@ class Navbar extends Component {
   }
   componentDidMount() {
     this.props.me()
-    this.props.getCart(this.props.user.id)
+    this.props.getCart()
     this.setState({
       quantity: this.props.shipCount
     })
@@ -34,8 +34,8 @@ class Navbar extends Component {
           <Menu>
             <Menu.Item as={Link} to='/home'>Home</Menu.Item>
             <Menu.Item as ={Link} to='/starships'>All Ships</Menu.Item>
-            <Menu.Item  position='right' icon='shopping cart' as ={Link} to='/cart'>Cart</Menu.Item>
-            <Dropdown icon='user' position='right' text='Account' className='link item'>
+            <Menu.Item  position='right'  as ={Link} to='/cart'>Cart</Menu.Item>
+            <Dropdown position='right' text='Account' className='link item'>
               <Dropdown.Menu  position='right' className='dropdown'>
                 <Dropdown.Item as={Link} text='Settings' to='/account' />
                 <Dropdown.Item text='Wish List' as={Link} to='/wishlist'/>
@@ -53,7 +53,7 @@ class Navbar extends Component {
             <Menu.Item as={Link} to='/home'>Home</Menu.Item>
             <Menu.Item as ={Link} to='/starships'>All Ships</Menu.Item>
             <Menu.Item as ={Link} to='/cart' position='right'>Cart</Menu.Item>
-            <Dropdown icon='user' text='Account' className='link item' position='right'>
+            <Dropdown text='Account' className='link item' position='right'>
               <Dropdown.Menu className='dropdown'>
                 <Dropdown.Item as={Link} text='Log In' to='/login' />
                 <Dropdown.Item text='Sign Up' as={Link} to='/signup'/>
@@ -84,7 +84,7 @@ const mapDispatch = dispatch => {
       localStorage.clear();
       dispatch(logout())
     },
-    getCart: userId => (dispatch(getCart(userId))),
+    getCart: () => (dispatch(getCart())),
     me: () => (dispatch(me())),
   }
 }
