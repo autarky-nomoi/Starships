@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { INSPECT_MAX_BYTES } from 'buffer';
 
 //actions
 export const GET_WISH_LIST = 'GET_WISH_LIST';
@@ -30,7 +29,7 @@ export const addWish = (shipId) => {
   return async dispatch => {
     try {
       const {data} = await axios.post('/api/wishlist',{shipId});
-      // dispatch(addWish(data));
+      dispatch(addWish(data));
     } catch (error) {
       console.log(error)
     }

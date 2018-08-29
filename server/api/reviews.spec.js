@@ -5,7 +5,7 @@ const app = require('../index')
 const Review = db.model('reviews')
 
 xdescribe('Review routes', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     db.sync({force: true})
   })
 
